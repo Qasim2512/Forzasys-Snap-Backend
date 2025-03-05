@@ -23,6 +23,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "mysql2": "^3.12.0",
+    "sequelize": "^6.37.6",
+    "sequelize-cli": "^6.6.2",
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0"
   },

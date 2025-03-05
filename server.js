@@ -5,12 +5,20 @@ const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const swaggerDocument = YAML.load("./swagger.yaml");
+const db = require("./models");
 
 const app = express();
 const port = 8000;
 
 app.use(cors());
 app.use(express.json());
+
+db.sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port 8000.`);
+    console.log(`example app listening at http://localhost:${port}`);
+  });
+});
 
 app.get("/message", (req, res) => {
   res.json({ message: "Hello from server!" });
@@ -46,7 +54,4 @@ app.delete("/items/:id", (req, res) => {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.listen(port, () => {
-  console.log(`Server is running on port 8000.`);
-  console.log(`example app listening at http://localhost:${port}`);
-});
+
