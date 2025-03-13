@@ -13,6 +13,10 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
+//Routers
+const postRouter = require("./routes/posts_routes");
+app.use("/posts", postRouter);
+
 db.sequelize.sync().then(() => {
   app.listen(port, () => {
     console.log(`Server is running on port 8000.`);
@@ -24,6 +28,7 @@ app.get("/message", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
+//Swagger
 let items = [{ id: 1, name: "Item 1" }];
 
 app.get("/items", (req, res) => {
@@ -53,5 +58,3 @@ app.delete("/items/:id", (req, res) => {
 });
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-
