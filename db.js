@@ -1,7 +1,7 @@
 /** @format */
-//Setup mongoDB connection
+// Setup mongoDB connection
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const URL = "mongodb://localhost:27017/forzaSnapDB";
 
@@ -13,15 +13,16 @@ mongoose.connect(URL, {
 const db = mongoose.connection;
 
 db.on("connected", () => {
-  console.log("Connected to mongoDb server");
+  console.log("Connected to mongoDB server");
 });
 
 db.on("error", (err) => {
-  console.log(" mogoDb server error");
+  console.log("MongoDB server error:", err);
 });
 
 db.on("disconnected", () => {
-  console.log("disconnected to mogoDb server");
+  console.log("Disconnected from mongoDB server");
 });
 
-module.exports = db;
+// Export the db connection
+export default db;

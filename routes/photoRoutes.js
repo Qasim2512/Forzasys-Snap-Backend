@@ -1,13 +1,14 @@
 /** @format */
 
-const express = require("express");
-const Photo = require("../models/Photo");
-const router = express.Router();
-const multer = require("multer");
+import express from "express";
+import Photo from "../models/Photo.js";
+import multer from "multer";
 
+const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+// POST route to upload a photo
 router.post("/", upload.single("photo"), async (req, res) => {
   try {
     const { name } = req.body;
@@ -27,6 +28,7 @@ router.post("/", upload.single("photo"), async (req, res) => {
   }
 });
 
+// GET route to fetch all photos
 router.get("/", async (req, res) => {
   try {
     const data = await Photo.find();
@@ -38,6 +40,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// PUT route to update a specific photo
 router.put("/:id", async (req, res) => {
   try {
     const PhotoId = req.params.id;
@@ -59,13 +62,14 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// DELETE route to remove a specific photo
 router.delete("/:id", async (req, res) => {
   try {
     const PhotoId = req.params.id;
     const response = await Photo.findByIdAndDelete(PhotoId);
 
     if (!response) {
-      res.status(404).json({ error: "Photo not found" });
+      return res.status(404).json({ error: "Photo not found" });
     }
 
     res.status(200).json({ message: "Photo deleted" });
@@ -75,4 +79,5 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+// Export the router
+export default router;

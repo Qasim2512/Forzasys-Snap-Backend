@@ -1,6 +1,6 @@
 /** @format */
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const photoSchema = new mongoose.Schema({
   name: {
@@ -13,4 +13,6 @@ const photoSchema = new mongoose.Schema({
 });
 
 const Photo = mongoose.model("Photo", photoSchema);
-module.exports = Photo;
+
+// Export the model
+export default Photo;

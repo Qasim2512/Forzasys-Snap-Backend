@@ -1,16 +1,21 @@
 /** @format */
 
-const express = require("express");
-const app = express();
-const db = require("./db");
+import express from "express";
+import bodyParser from "body-parser";
+import db from "./db.js";
+import photoRoutes from "./routes/photoRoutes.js";
+import cors from "cors";
 
-const bodyParser = require("body-parser");
+const app = express();
+
+//Set up the app
+const corsOptions = {
+  origin: ["http://localhost:8081"],
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-//import Router files
-const photoRoutes = require("./routes/photoRoutes");
-
-//use the routes
+// Use the routes
 app.use("/photo", photoRoutes);
 
 app.listen(3000, () => {
