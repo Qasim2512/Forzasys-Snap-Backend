@@ -5,16 +5,7 @@ import bodyParser from "body-parser";
 import db from "./db.js";
 import photoRoutes from "./routes/photoRoutes.js";
 import cors from "cors";
-import swaggerUIPath from "swagger-ui-express";
-import swaggerjsonFilePath from "./docs/swagger.json" assert { type: "json" };
-
 const app = express();
-
-app.use(
-  "/api-docs",
-  swaggerUIPath.serve,
-  swaggerUIPath.setup(swaggerjsonFilePath)
-);
 
 //Set up the app
 const corsOptions = {
