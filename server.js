@@ -7,17 +7,11 @@ const db = require("./db");
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
-app.get("/", function (req, res) {
-  res.send("Welcome to my website");
-});
-
 //import Router files
-const personRoutes = require("./routes/personRoutes");
-const menuRoutes = require("./routes/menuItemRoutes");
+const photoRoutes = require("./routes/photoRoutes");
 
 //use the routes
-app.use("/person", personRoutes);
-app.use("/menu", menuRoutes);
+app.use("/photo", photoRoutes);
 
 app.listen(3000, () => {
   console.log("listening to port 3000");
