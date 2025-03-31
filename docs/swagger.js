@@ -14,28 +14,13 @@ import generateSwagger from "swagger-autogen";
 const swaggerDocument = {
   info: {
     version: "1.0.0",
-    title: "Todo Apis",
-    description: "API for Managing todo calls",
-    contact: {
-      name: "API Support",
-      email: "tiwariankit496@gmail.com",
-    },
+    title: "ForzaSnap Apis",
   },
   host: "localhost:3000",
   basePath: "/",
   schemes: ["http"],
   consumes: ["application/json"],
   produces: ["application/json"],
-  tags: [
-    {
-      name: "TODO CRUD",
-      description: "TODO related apis",
-    },
-    {
-      name: "Todo",
-      description: "Todo App",
-    },
-  ],
   securityDefinitions: {},
   definitions: {
     todoResponse: {

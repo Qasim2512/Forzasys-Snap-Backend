@@ -2,25 +2,11 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Todo Apis",
-    "description": "API for Managing todo calls",
-    "contact": {
-      "name": "API Support",
-      "email": "tiwariankit496@gmail.com"
-    }
+    "title": "ForzaSnap Apis",
+    "description": ""
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "TODO CRUD",
-      "description": "TODO related apis"
-    },
-    {
-      "name": "Todo",
-      "description": "Todo App"
-    }
-  ],
   "schemes": [
     "http"
   ],
@@ -98,30 +84,6 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/photo/{name}": {
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "name",
             "in": "path",
             "required": true,
             "type": "string"
