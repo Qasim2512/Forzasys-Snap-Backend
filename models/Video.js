@@ -2,16 +2,16 @@
 
 import mongoose from "mongoose";
 
-const photoSchema = new mongoose.Schema({
+const videoSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  photo: {
+  video: {
     type: String,
   },
 });
 
-const Photo = mongoose.model("Photo", photoSchema);
+const Video = mongoose.model("Video", videoSchema);
 
 // Export the model
-export default Photo;
+export default Video;
