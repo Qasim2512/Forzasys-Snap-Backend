@@ -11,12 +11,12 @@ const upload = multer({ storage });
 // POST route to upload a photo
 router.post("/", upload.single("photo"), async (req, res) => {
   try {
-    const { name } = req.body;
-    const photBase64 = req.file ? req.file.buffer.toString("base64") : null;
+    const name = req.body.name;
+    const base64Data = req.body.file.replace(/^data:image\/\w+;base64,/, "");
 
     const newPhoto = new Photo({
-      name,
-      photo: photBase64,
+      name: name,
+      photo: base64Data,
     });
 
     const response = await newPhoto.save();
@@ -32,7 +32,6 @@ router.post("/", upload.single("photo"), async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const data = await Photo.find();
-    console.log("data fetched");
     res.status(200).json(data);
   } catch (error) {
     console.log(error);

@@ -9,14 +9,15 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // POST route to upload a Video
-router.post("/", upload.single("Video"), async (req, res) => {
+router.post("/", upload.single("video"), async (req, res) => {
   try {
-    const { name } = req.body;
-    const videoBase64 = req.file ? req.file.buffer.toString("base64") : null;
+    const name = req.body.name;
+
+    const base64Data = req.body.file;
 
     const newVideo = new Video({
-      name,
-      Video: videoBase64,
+      name: name,
+      video: base64Data,
     });
 
     const response = await newVideo.save();
