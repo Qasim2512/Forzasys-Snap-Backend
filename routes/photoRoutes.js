@@ -12,7 +12,7 @@ const upload = multer({ storage });
 router.post("/", upload.single("photo"), async (req, res) => {
   try {
     const name = req.body.name;
-    const base64Data = req.body.file.replace(/^data:image\/\w+;base64,/, "");
+    const base64Data = req.body.file;
 
     const newPhoto = new Photo({
       name: name,
