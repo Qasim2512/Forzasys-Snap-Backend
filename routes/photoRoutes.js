@@ -13,10 +13,12 @@ router.post("/", upload.single("photo"), async (req, res) => {
   try {
     const name = req.body.name;
     const base64Data = req.body.file;
+    const description = req.body.description;
 
     const newPhoto = new Photo({
       name: name,
       photo: base64Data,
+      description: description,
     });
 
     const response = await newPhoto.save();

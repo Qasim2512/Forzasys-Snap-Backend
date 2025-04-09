@@ -9,6 +9,9 @@ const videoSchema = new mongoose.Schema({
   video: {
     type: String,
   },
+  description: {
+    type: String,
+  },
 });
 
 const Video = mongoose.model("Video", videoSchema);

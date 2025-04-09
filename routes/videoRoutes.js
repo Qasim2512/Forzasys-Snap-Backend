@@ -15,9 +15,12 @@ router.post("/", upload.single("video"), async (req, res) => {
 
     const base64Data = req.body.file;
 
+    const description = req.body.description;
+
     const newVideo = new Video({
       name: name,
       video: base64Data,
+      description: description,
     });
 
     const response = await newVideo.save();
@@ -63,11 +66,11 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE route to remove a specific photo
+// DELETE route to remove a specific video
 router.delete("/:id", async (req, res) => {
   try {
-    const PhotoId = req.params.id;
-    const response = await Photo.findByIdAndDelete(PhotoId);
+    const VideoId = req.params.id;
+    const response = await Video.findByIdAndDelete(VideoId);
 
     if (!response) {
       return res.status(404).json({ error: "Video not found" });
