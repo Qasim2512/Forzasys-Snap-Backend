@@ -12,14 +12,12 @@ const upload = multer({ storage });
 router.post("/", upload.single("video"), async (req, res) => {
   try {
     const name = req.body.name;
-
-    const base64Data = req.body.file;
-
+    const videoUrl = req.body.file;
     const description = req.body.description;
 
     const newVideo = new Video({
       name: name,
-      video: base64Data,
+      video: videoUrl,
       description: description,
     });
 
