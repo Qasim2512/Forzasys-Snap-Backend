@@ -2,10 +2,12 @@
 
 import express from "express";
 import bodyParser from "body-parser";
-import db from "./db.js";
+import { connectDB } from "./db.js";
+import cors from "cors";
 import photoRoutes from "./routes/photoRoutes.js";
 import videoRoutes from "./routes/videoRoutes.js";
-import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js"; // ✅ Make sure this file exists
 
 const app = express();
 
@@ -35,9 +37,21 @@ app.use(
 
 app.use(bodyParser.json());
 
+connectDB()
+  .then(() => {
+    console.log("Connected to MongoDB server");
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+    process.exit(1); // Stop the server on error
+  });
+
 // Use the routes
+
 app.use("/photo", photoRoutes);
 app.use("/video", videoRoutes);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes); // ✅ user profile info
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
