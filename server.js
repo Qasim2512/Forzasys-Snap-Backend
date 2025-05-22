@@ -7,11 +7,11 @@ import cors from "cors";
 import photoRoutes from "./routes/photoRoutes.js";
 import videoRoutes from "./routes/videoRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/userRoutes.js"; // ✅ Make sure this file exists
+import userRoutes from "./routes/userRoutes.js"; 
 
 const app = express();
 
-// Set up the app
+// app setup
 const allowedOrigins = [
   "http://localhost:8081",
   "http://172.20.10.3:8081",
@@ -31,7 +31,7 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true, // This allows cookies to be sent with CORS requests
+    credentials: true, 
   })
 );
 
@@ -43,15 +43,14 @@ connectDB()
   })
   .catch((err) => {
     console.error("MongoDB connection error:", err);
-    process.exit(1); // Stop the server on error
+    process.exit(1); 
   });
 
-// Use the routes
 
 app.use("/photo", photoRoutes);
 app.use("/video", videoRoutes);
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes); // ✅ user profile info
+app.use("/user", userRoutes); 
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");

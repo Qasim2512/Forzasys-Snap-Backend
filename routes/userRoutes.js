@@ -15,7 +15,7 @@ router.get("/:userId", async (req, res) => {
     res.json({
       username: user.username,
       email: user.email,
-      posts: user.uploads, // renamed to 'posts'
+      posts: user.uploads, 
       profilePic: user.profilePic,
     });
   } catch (err) {
@@ -54,13 +54,13 @@ router.put("/:userId/profile-pic", async (req, res) => {
 // Route to add a post (previously called upload)
 router.put("/:userId/add-post", async (req, res) => {
   try {
-    const { post } = req.body; // renamed from 'upload' to 'post'
+    const { post } = req.body; 
     const user = await User.findById(req.params.userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    user.uploads.push(post); // still using the 'uploads' field in the model
+    user.uploads.push(post);
     await user.save();
 
     res.json({ message: "Post added", posts: user.uploads });
